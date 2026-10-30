@@ -22,3 +22,4 @@
 .mockups .mockup:hover{border-color:#cee12f66}
 @media(max-width:1000px){.mockups{padding:48px 28px}.mockups-gallery{gap:14px}.mockups .mockup{padding:22px 16px 0}.mockups .mockup>span{font-size:11px}}
 @media(max-width:760px){.mockups{padding:38px 24px}.mockups-intro{display:block;margin-bottom:28px}.mockups-intro h2{font-size:32px}.mockups-intro p{margin-top:14px}.mockups-gallery{grid-template-columns:1fr;gap:20px}.mockups .mockup{padding:28px 28px 0}.mockups .mockup img{max-width:310px}.mockups .mockup>span{max-width:310px;margin:auto;font-size:12px}}
+.brand-concept p+p{margin-top:18px}
