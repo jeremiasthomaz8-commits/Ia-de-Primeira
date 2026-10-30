@@ -1,6 +1,6 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const chapters=[['01','Fundamentos da marca',[['missao','Missão & visão'],['personalidade','Personalidade'],['voz','Voz & tom']]],['02','Identidade visual',[['logo','Logo & símbolo'],['cores','Paleta cromática'],['tipografia','Tipografia'],['iconografia','Iconografia']]],['03','Design system',[['ui-kit','UI Kit'],['botoes','Botões & badges'],['campos','Campos & cards']]],['04','Aplicações da marca',[['app-icon','Ícone de app'],['social','Redes sociais']]]];
-const navHTML=chapters.map(([n,title,links])=>`<div class="index-card"><span>${n}.</span><h3>${title}</h3><ul>${links.map(([id,name])=>`<li><a href="#${id}">${name}<i aria-hidden="true">↗</i></a></li>`).join('')}</ul></div>`).join('');
+const navHTML=chapters.map(([n,title,links])=>`<div class="index-card"><span>${n}.</span><h3>${title}</h3><ul>${links.map(([id,name])=>`<li><a href="#${id}">${name}<i aria-hidden="true"><svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12"/></svg></i></a></li>`).join('')}</ul></div>`).join('');
 $$('.index-grid,.footer-nav,#menu-links').forEach(el=>el.innerHTML=navHTML);
 const menu=$('#menu'), menuToggle=$('.menu-toggle');let lastFocus;
 function closeMenu(){menu.close();menuToggle.setAttribute('aria-expanded','false');document.body.style.overflow='';lastFocus?.focus();}
@@ -52,4 +52,5 @@ if(!reduced.matches){const observer=new IntersectionObserver(entries=>entries.fo
 const sections=$$('.spread[id],#ui-kit,#botoes,#campos'),links=$$('#menu-links a');let ticking=false;
 function onScroll(){const max=document.documentElement.scrollHeight-innerHeight;$('.progress').style.width=`${max>0?scrollY/max*100:0}%`;let active='';for(const section of sections)if(section.getBoundingClientRect().top<innerHeight*.45)active=section.id;links.forEach(link=>{if(link.hash===`#${active}`)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')});if(!reduced.matches){const words=$('.word-reveal'),rect=words.getBoundingClientRect(),amount=Math.max(0,Math.min(1,(innerHeight*.88-rect.top)/(rect.height+innerHeight*.25)));$$('span',words).forEach((span,i,all)=>span.classList.toggle('read',i/all.length<=amount))}ticking=false}
 addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true}},{passive:true});addEventListener('resize',onScroll);onScroll();
+
 
